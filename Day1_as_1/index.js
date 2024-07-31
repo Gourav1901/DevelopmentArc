@@ -19,3 +19,15 @@ function cloningObjects(person) {
 
 const person = { name: "John", age: 30, address: "123 Main St" };
 console.log(cloningObjects(person)); 
+
+
+
+function mergingObjects(student,course) {
+  studentWithCourse = {...student,...course};
+  return studentWithCourse;
+}
+
+
+const student = { name: "Alice", age: 20 };
+const course = { courseName: "Math", teacher: "Mr. Smith" };
+console.log(mergingObjects(student, course));
