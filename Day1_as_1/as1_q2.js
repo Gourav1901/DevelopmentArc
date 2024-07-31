@@ -16,7 +16,18 @@ function averageSalary(employees){
   return avg;
 }
 
+//Third Employee Info: Define a function thirdEmployeeInfo that takes an array of employee objects, 'employees', as a parameter. Extract the name, age, and salary of the third employee and assign them to variables 'thirdEmployeeName', 'thirdEmployeeAge', and 'thirdEmployeeSalary'. Calculate a bonus of 10% on the salary. Return a string in the format "Employee: , Age: , Salary: , Bonus: ".
 
+
+function thirdEmployeeInfo(employess){
+  const {name:thirdEmployeeName, age:thirdEmployeeAge,salary:thirdEmployeeSalary} = employees[2];
+
+  const bonus = thirdEmployeeSalary * 0.1;
+
+  return `Employee: ${thirdEmployeeName}, Age:${thirdEmployeeAge},Salary:${thirdEmployeeSalary}, bonus:${bonus}`;
+     
+
+}
 
 const employees = [
   { name: "John Doe", age: 30, department: "HR", salary: 50000 },
@@ -25,6 +36,7 @@ const employees = [
 ];
 console.log(employeeInformation(employees));
 console.log(averageSalary(employees));
+console.log(thirdEmployeeInfo(employees)); 
 
 
 
