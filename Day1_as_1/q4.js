@@ -5,6 +5,14 @@ function highestPaid(employees) {
     return currentSalary > highestSalary ? current : highest;
   });
 }
+
+function destructuringToSwap(employees){
+  [employees[0], employees[employees.length - 1]] = [employees[employees.length - 1],employees[0]];
+
+  return employees;
+}
+
+
 const employees = [
   { name: "John Doe", age: 30, department: "HR", salary: 50000 },
   { name: "Jane Smith", age: 28, department: "Finance", salary: 60000 },
@@ -12,3 +20,5 @@ const employees = [
 ];
 
 console.log(highestPaid(employees));
+console.log(destructuringToSwap(employees));
+
