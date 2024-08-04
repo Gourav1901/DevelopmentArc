@@ -20,7 +20,7 @@
     <!-- Image that will change based on selection -->
     <br><br>
     <div class="ani">
-    <img id="animalImage" src="./image/dog.jpg" alt="Animal">
+    <img id="animalImage" src="../image/dog.jpg" alt="Animal">
   </div>
     <!-- JavaScript to handle the image change -->
     <script>
@@ -35,19 +35,19 @@
             // Set image URL based on selected animal
             switch(animal) {
                 case 'dog':
-                    imageUrl =     './image/dog.jpg';
+                    imageUrl =     '../image/dog.jpg';
                     break;
                 case 'cat':
-                    imageUrl = './image/cat.jpg';
+                    imageUrl = '../image/cat.jpg';
                     break;
                 case 'elephant':
-                    imageUrl = './image/ele.jpg';
+                    imageUrl = '../image/ele.jpg';
                     break;
                 case 'lion':
-                    imageUrl = './image/lion.jpg';
+                    imageUrl = '../image/lion.jpg';
                     break;
                 default:
-                    imageUrl = './image/dog.jpg';
+                    imageUrl = '../image/dog.jpg';
             }
 
             // Update the image source
