@@ -1,0 +1,18 @@
+.ani{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ overflow: hidden;
+}
+
+#animalImage{
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+}
+
+#animalSelect{
+  padding: 10px 15px;
+  font-size: 25px;
+  border: 2px solid;
+}
