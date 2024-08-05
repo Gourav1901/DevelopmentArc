@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Analyzer Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        #inputText {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+
+        .button-group {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+        }
+
+        #results {
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Text Analyzer Tool</h1>
+
+    <!-- Text input area -->
+    <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+
+    <!-- Button group for text operations -->
+    <div class="button-group">
+        <button id="wordCount">Word Count</button>
+        <button id="toLowerCase">Lowercase</button>
+        <button id="toUpperCase">Uppercase</button>
+        <button id="checkSubstring">Check Substring</button>
+    </div>
+
+    <!-- Display results -->
+    <div id="results">
+        <p id="result"></p>
+    </div>
+
+    <!-- JavaScript for functionality -->
+    <script>
+        // Higher-order function to handle event listeners
+        function addClickListener(buttonId, handler) {
+            document.getElementById(buttonId).addEventListener('click', handler);
+        }
+
+        // Text Analyzer functions
+        function wordCount() {
+            const text = document.getElementById('inputText').value.trim();
+            const wordCount = text ? text.split(/\s+/).length : 0;
+            displayResult(`Word Count: ${wordCount}`);
+        }
+
+        function toLowerCase() {
+            const text = document.getElementById('inputText').value;
+            const lowerText = text.toLowerCase();
+            displayResult(`Lowercase Text: ${lowerText}`);
+        }
+
+        function toUpperCase() {
+            const text = document.getElementById('inputText').value;
+            const upperText = text.toUpperCase();
+            displayResult(`Uppercase Text: ${upperText}`);
+        }
+
+        function checkSubstring() {
+            const text = document.getElementById('inputText').value;
+            const substring = prompt("Enter the substring to check:");
+            const isSubstringPresent = text.includes(substring);
+            displayResult(`Substring "${substring}" found: ${isSubstringPresent}`);
+        }
+
+        function displayResult(result) {
+            document.getElementById('result').textContent = result;
+        }
+
+        // Adding event listeners for buttons
+        addClickListener('wordCount', wordCount);
+        addClickListener('toLowerCase', toLowerCase);
+        addClickListener('toUpperCase', toUpperCase);
+        addClickListener('checkSubstring', checkSubstring);
+    </script>
+</body>
+</html>
