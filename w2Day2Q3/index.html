@@ -1,0 +1,30 @@
+<!-- You've been tasked with creating a reminder manager application using vanilla JavaScript, HTML, and CSS. The application must allow users to set, edit, and delete reminders efficiently. Users should be able to enter reminder details and set a specific time for the reminder. The application will use setTimeout to schedule the reminders and setInterval for periodic updates to check and display active reminders. Additionally, users should have the option to edit the reminder before it triggers, with the setTimeout being updated accordingly. Users should also be able to delete a reminder, using clearTimeout to cancel it. When a reminder ends, the application should alert the user. Ensure the application is well-organized and commented, demonstrating your proficiency in JavaScript asynchronous programming and application development. Submit your solution via GitHub. -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+
+  <div class="container">
+    <h2>reminder manager application</h2>
+    <div class="reminder-form">
+      <input type="text" name="" id="reminderText" placeholder="Enter reminder details">
+      <input type="datetime-local" name="" id="reminderTime">
+      <button id="addReminderBtn">Add Reminder</button>
+    </div>
+    <ul id="reminderList"></ul>
+  </div>
+    
+
+  <script src="script.js"></script>
+</body>
+</html>
