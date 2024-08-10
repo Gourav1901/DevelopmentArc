@@ -25,7 +25,7 @@ function HUKUMUScoreCheck(marks, cutoff){
 
 
     if(average >= cutoff){
-      resolve("congratulation")
+      resolve(average)
     }
     else{
       reject("Sorry you haven’t cleared the coding round.");
@@ -33,6 +33,23 @@ function HUKUMUScoreCheck(marks, cutoff){
 
     },2000)
   })
+}
+
+function UnitMovement(avgCodingscroe,avgHukumuScore,unitcutoff) {
+
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+
+   const unitavg = (avgCodingscroe + avgHukumuScore) / 2;
+
+    if( unitavg >= cutoff){
+      resolve("unitavg")
+    } 
+    else{
+      reject("Sorry")
+    }
+  },2000)
+});
 }
 
 // Example usage
@@ -45,5 +62,16 @@ codingScoreCheck(marks, cutoff)
 
 
 HUKUMUScoreCheck(marks,cutoff)
-  .then(average => console.log(`Congratulations! You have clear the Interview`))
-  .catch(error => console.log(`error`));
+  .then(average => console.log(`Congratulations! You have clear the Interview your score is ${average}`))
+  .catch(error => console.log(error));
+
+  
+  const avgCodingscroe = 81;
+  const avgHukumuScore = 81;
+  const unitcutoff = 75
+
+
+
+UnitMovement(avgCodingscroe,avgHukumuScore,unitcutoff)
+  .then(unitavg => console.log(`Congratulations! You have clear the unit your score is ${unitavg}`))
+  .catch(error => console.log(error));
