@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Data Analyzer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Product Data Analyzer</h1>
+        
+        <div id="product-list" class="product-list">
+            <h2>First 5 Products</h2>
+            <ul id="product-list-items"></ul>
+        </div>
+
+        <div class="filters">
+            <h2>Filter Products by Category</h2>
+            <select id="category-select">
+                <option value="">Select a category</option>
+            </select>
+            <button id="filter-btn">Filter</button>
+        </div>
+
+        <div id="filtered-results" class="product-list">
+            <h2>Filtered Results</h2>
+            <ul id="filtered-list-items"></ul>
+        </div>
+
+        <div id="highest-priced" class="product-info">
+            <h2>Highest Priced Product</h2>
+            <p id="highest-product"></p>
+        </div>
+
+        <div id="average-price" class="product-info">
+            <h2>Average Price of All Products</h2>
+            <p id="avg-price"></p>
+        </div>
+
+        <div id="filter-history" class="history">
+            <h2>Filter History</h2>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
