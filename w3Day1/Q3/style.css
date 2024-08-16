@@ -1,0 +1,78 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+#app {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#search-container {
+  margin-bottom: 20px;
+}
+
+#search-input {
+  padding: 10px;
+  width: 60%;
+  font-size: 16px;
+}
+
+#search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+#results-container {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.movie-card {
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  text-align: left;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.movie-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px;
+}
+
+.movie-card p {
+  font-size: 14px;
+  color: #555;
+}
+
+#pagination-container {
+  margin-top: 20px;
+}
+
+#pagination-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#pagination-container span {
+  margin: 0 15px;
+  font-size: 18px;
+}
