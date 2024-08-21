@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Simulation System</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    color: #333;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#carStatus {
+    margin-top: 20px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1.1em;
+    color: #333;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Simulation System</h1>
+        <div id="carSetup">
+            <h2>Create a Car</h2>
+            <div class="input-group">
+                <label for="carName">Car Name:</label>
+                <input type="text" id="carName" required>
+            </div>
+            <div class="input-group">
+                <label for="accelerationPower">Acceleration Power (m/s²):</label>
+                <input type="number" id="accelerationPower" required>
+            </div>
+            <div class="input-group">
+                <label for="brakingPower">Braking Power (m/s²):</label>
+                <input type="number" id="brakingPower" required>
+            </div>
+            <div class="input-group">
+                <label for="fuelCapacity">Fuel Capacity:</label>
+                <input type="number" id="fuelCapacity" required>
+            </div>
+            <button onclick="createCar()">Create Car</button>
+        </div>
+
+        <div id="carActions" style="display:none;">
+            <h2>Car Actions</h2>
+            <button onclick="car.accelerate()">Accelerate</button>
+            <button onclick="car.brake()">Brake</button>
+            <button onclick="car.refuel()">Refuel</button>
+            <button onclick="simulateDrive()">Simulate Drive</button>
+            <div id="carStatus"></div>
+        </div>
+    </div>
+
+<script>
+  class Car {
+    constructor(name, accelerationPower, brakingPower, maxFuelCapacity) {
+        this.name = name;
+        this.accelerationPower = accelerationPower; // meters per second squared
+        this.brakingPower = brakingPower; // meters per second squared
+        this.speed = 0; // initial speed in meters per second
+        this.fuelLevel = maxFuelCapacity; // initial fuel level at maximum capacity
+        this.maxFuelCapacity = maxFuelCapacity;
+    }
+
+    accelerate() {
+        if (this.fuelLevel > 0) {
+            this.speed += this.accelerationPower;
+            this.fuelLevel -= this.accelerationPower * 0.1; // consuming fuel based on acceleration
+            this.updateStatus(`Accelerating: Speed is now ${this.speed} m/s`);
+        } else {
+            this.updateStatus("Cannot accelerate: Fuel level is empty!");
+        }
+    }
+
+    brake() {
+        this.speed = Math.max(0, this.speed - this.brakingPower);
+        this.updateStatus(`Brakes applied: Speed is now ${this.speed} m/s`);
+    }
+
+    checkSpeed() {
+        return this.speed;
+    }
+
+    refuel() {
+        this.fuelLevel = this.maxFuelCapacity;
+        this.updateStatus("Refueled to maximum capacity");
+    }
+
+    drive(duration) {
+        for (let i = 0; i < duration; i++) {
+            if (i % 2 === 0) {
+                this.accelerate();
+            } else {
+                this.brake();
+            }
+        }
+    }
+
+    updateStatus(message) {
+        document.getElementById('carStatus').textContent = message;
+    }
+}
+
+let car;
+
+function createCar() {
+    const name = document.getElementById('carName').value;
+    const accelerationPower = parseFloat(document.getElementById('accelerationPower').value);
+    const brakingPower = parseFloat(document.getElementById('brakingPower').value);
+    const fuelCapacity = parseFloat(document.getElementById('fuelCapacity').value);
+
+    if (name && accelerationPower && brakingPower && fuelCapacity) {
+        car = new Car(name, accelerationPower, brakingPower, fuelCapacity);
+        document.getElementById('carActions').style.display = 'block';
+        car.updateStatus(`Car ${car.name} created with Speed: ${car.speed} m/s, Fuel Level: ${car.fuelLevel}`);
+    } else {
+        alert('Please fill in all fields');
+    }
+}
+
+function simulateDrive() {
+    const duration = 10; // Simulate a 10-second driving session
+    car.drive(duration);
+    car.updateStatus(`Driving session complete. Final Speed: ${car.speed} m/s, Fuel Level: ${car.fuelLevel.toFixed(2)}`);
+}
+
+</script>
+</body>
+</html>
