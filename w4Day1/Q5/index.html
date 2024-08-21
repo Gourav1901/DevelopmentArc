@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        #bookList, #statistics {
+            margin-top: 20px;
+        }
+        #bookList h2, #statistics h2 {
+            color: #333;
+            border-bottom: 2px solid #5cb85c;
+            padding-bottom: 10px;
+        }
+        #books, #stats {
+            list-style-type: none;
+            padding: 0;
+        }
+        #books li, #stats li {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Library Management System</h1>
+        <div id="addBook">
+            <h2>Add a New Book</h2>
+            <div class="input-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" required>
+            </div>
+            <div class="input-group">
+                <label for="author">Author:</label>
+                <input type="text" id="author" required>
+            </div>
+            <div class="input-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" required>
+            </div>
+            <div class="input-group">
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" required>
+            </div>
+            <button onclick="addBook()">Add Book</button>
+        </div>
+        <div id="bookList">
+            <h2>Book List</h2>
+            <ul id="books"></ul>
+        </div>
+        <div id="statistics">
+            <h2>Library Statistics</h2>
+            <ul id="stats"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Book class definition
+class Book {
+    constructor(title, author, year, genre) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.genre = genre;
+    }
+
+    getInfo() {
+        return `${this.title} by ${this.author}, ${this.year} (${this.genre})`;
+    }
+}
+
+// Library class definition
+class Library {
+    constructor() {
+        this.books = [];
+    }
+
+    addBook(book) {
+        this.books.push(book);
+    }
+
+    getTotalBooks() {
+        return this.books.length;
+    }
+
+    getAveragePublicationYear() {
+        if (this.books.length === 0) return 0;
+
+        const totalYears = this.books.reduce((sum, book) => sum + book.year, 0);
+        return totalYears / this.books.length;
+    }
+}
+
+// Function to create a new book
+function createBook(title, author, year, genre) {
+    return new Book(title, author, year, genre);
+}
+
+// Initialize the library
+const library = new Library();
+
+// Function to add a book
+function addBook() {
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const year = parseInt(document.getElementById('year').value);
+    const genre = document.getElementById('genre').value;
+
+    if (title && author && year && genre) {
+        const newBook = createBook(title, author, year, genre);
+        library.addBook(newBook);
+        updateBookList();
+        updateStatistics();
+        clearForm();
+    } else {
+        alert('Please fill in all fields');
+    }
+}
+
+// Function to update the book list display
+function updateBookList() {
+    const bookList = document.getElementById('books');
+    bookList.innerHTML = '';
+    library.books.forEach(book => {
+        const li = document.createElement('li');
+        li.textContent = book.getInfo();
+        bookList.appendChild(li);
+    });
+}
+
+// Function to update library statistics display
+function updateStatistics() {
+    const statsList = document.getElementById('stats');
+    statsList.innerHTML = '';
+
+    const totalBooks = library.getTotalBooks();
+    const avgYear = library.getAveragePublicationYear();
+
+    statsList.innerHTML = `
+        <li>Total Books: ${totalBooks}</li>
+        <li>Average Publication Year: ${avgYear.toFixed(2)}</li>
+    `;
+}
+
+// Function to clear the form after adding a book
+function clearForm() {
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('year').value = '';
+    document.getElementById('genre').value = '';
+}
+
+// Initial update of the book list and statistics when the page loads
+updateBookList();
+updateStatistics();
+
+    </script>
+</body>
+</html>
